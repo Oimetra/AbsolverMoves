@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<body>
+  <div ng-app="myApp" ng-controller="stylesCtrl">
+  <table>
+    <tr ng-repeat="style in styles">
+      <td>{{ style.style_id }}</td>
+      <td>{{ style.name }}</td>
+    </tr>
+  </table>
+  </div>
+  <script>
+  var app = angular.module('myApp', []);
+  app.controller('stylesCtrl', function($scope, $http) {
+      $http.get("http://localhost:8080/test")
+      .then(function (response) {
+        console.log(response.data);
+        $scope.styles = response.data;});
+  });
+  </script>
+</body>
+</html>
